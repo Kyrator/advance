@@ -24,8 +24,9 @@ def get_summary_rss(ps_output_file_path: str) -> str:
     try:
         with open(ps_output_file_path, 'r', encoding='UTF-8') as ps_output:
             title_dict = ps_output.readline().split()
+            index_rss = title_dict.index('RSS')
             for ps_output_line in ps_output.readlines():
-                rss_data = ps_output_line.split()[5]
+                rss_data = ps_output_line.split()[index_rss]
                 if rss_data.isdigit():
                     summa += int(rss_data)
     except FileNotFoundError:
