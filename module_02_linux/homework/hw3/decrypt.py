@@ -38,7 +38,21 @@ import sys
 
 
 def decrypt(encryption: str) -> str:
-    ...
+    while '..' in encryption:
+        find = encryption.index('..')
+        if find - 1 > -1:
+            s = list(encryption)
+            del s[find-1:find+2]
+            encryption = "".join(s)
+        else:
+            break
+
+    while '.' in encryption:
+        s = list(encryption)  # конвертируем в список
+        find = encryption.index('.')
+        del s[find]  # удаляем элемент с индексом index
+        encryption = "".join(s)
+    return encryption
 
 
 if __name__ == '__main__':
