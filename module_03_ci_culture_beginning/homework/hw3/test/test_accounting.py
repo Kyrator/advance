@@ -1,18 +1,16 @@
 import unittest
 
-from module_02_linux.homework.hw7.accounting import app
+from module_02_linux.homework.hw7.accounting import app, storage
 
 
 class TestApp(unittest.TestCase):
-    storage = {2023: {10: 10, 'total': 10}}
+
     @classmethod
     def setUpClass(cls):
         """Конфигурационная функция"""
-        cls.storage.update()
         app.config['TESTING'] = True
         app.config['DEBUG'] = False
         cls.app = app.test_client()
-
 
     def test_add(self):
         """Тестирование функции добавления"""
@@ -83,31 +81,21 @@ class TestApp(unittest.TestCase):
                         TypeError
                     )
 
-""" Я не разобрался как подключать словарь со своими данными ??? 
-    тут нужно вообще свои данные записать 
-    через 
-    **```python
-    @classmethod
-    def setUpClass(cls):
-        storage.update(...)
-    ```**
-    не работает.   
-        
-        """
-    # def test_calculate_year_without_storage(self):
-    #     """Тестирование функции расчета года без данных"""
-    #
-    #     items = (
-    #         {'data': '2023', 'answer': "2023 год пустой, заполните значения"},
-    #         {'data': '2022', 'answer': "2022 год пустой, заполните значения"},
-    #         {'data': '2021', 'answer': "2021 год пустой, заполните значения"},
-    #     )
-    #
-    #     for item in items:
-    #         with self.subTest(item['data']):
-    #             self.base_url = '/calculate/' + item['data']
-    #             output = self.app.get(self.base_url).data.decode()
-    #             self.assertEqual(
-    #                 output,
-    #                 item['answer']
-    #             )
+    def test_calculate_year_without_storage(self):
+        storage.clear()
+        """Тестирование функции расчета года без данных"""
+
+        items = (
+            {'data': '2023', 'answer': "2023 год пустой, заполните значения"},
+            {'data': '2022', 'answer': "2022 год пустой, заполните значения"},
+            {'data': '2021', 'answer': "2021 год пустой, заполните значения"},
+        )
+
+        for item in items:
+            with self.subTest(item['data']):
+                self.base_url = '/calculate/' + item['data']
+                output = self.app.get(self.base_url).data.decode()
+                self.assertEqual(
+                    output,
+                    item['answer']
+                )
