@@ -15,16 +15,16 @@ import requests
 from flask import Flask, request
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField
-from wtforms.validators import Email, InputRequired, NumberRange
+from wtforms.validators import Email, InputRequired
 
-from hw2_validators import number_length, NumberLength
+from hw2_validators import NumberLength, number_length
 
 app = Flask(__name__)
 
 
 class RegistrationForm(FlaskForm):
     email = StringField(validators=[InputRequired(), Email()])
-    phone = IntegerField(validators=[InputRequired(), NumberRange(min=1_000_000_000, max=9_999_999_999)])
+    phone = IntegerField(validators=[InputRequired(), number_length(min=10, max=10)])
     name = StringField(validators=[InputRequired()])
     address = StringField(validators=[InputRequired()])
     index = IntegerField(validators=[InputRequired()])
@@ -40,15 +40,13 @@ def registration():
 
         return f"Successfully registered user {email} with phone +7{phone}"
 
-    errors_list = form.errors
-    print(errors_list)
-
+    # errors_list = form.errors
+    # print(errors_list)
+    #
     email_errors_list = form.email.errors
     print(email_errors_list)
 
     return f"Invalid input, {form.errors}", 400
-
-
 
 
 if __name__ == "__main__":
