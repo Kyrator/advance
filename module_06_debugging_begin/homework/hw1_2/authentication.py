@@ -18,12 +18,32 @@
 import getpass
 import hashlib
 import logging
+import re
 
 logger = logging.getLogger("password_checker")
+dict_word = []
+def add_word():
+    """ """
+    with open('words.txt', 'r') as files:
+        dict_word = [line.strip() for line in files if len(line) >= 4]
+    return dict_word
+
+def check_word(check_list):
+    global dict_word
+    if not dict_word:
+        dict_word = add_word()
+    for check_word in check_list:
+        if check_word.lower() in dict_word:
+            return True
+    return False
 
 
 def is_strong_password(password: str) -> bool:
-    return True
+    check_list = re.findall('[A-Za-z]{4,}', password)
+    if check_list:
+        return check_word(check_list)
+
+
 
 
 def input_and_check_password() -> bool:
@@ -34,7 +54,7 @@ def input_and_check_password() -> bool:
         logger.warning("Вы ввели пустой пароль.")
         return False
     elif is_strong_password(password):
-        logger.warning("Вы ввели слишком слабый пароль")
+        logger.warning("Вы ввели не хороший пароль по новым стандартам безопасности")
         return False
 
     try:
