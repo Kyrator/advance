@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страницы не существует</title>
+</head>
+<body>
+<h1>Страницы не существует попробуете пройти по ссылке</h1>
+{% for link in links %}
+<a href="{{ link[0] }}" > {{ link[1]}}</a><br>
+{% if link[0] == '/cats' %}
+<a href="{{ link[0] }}/1">{{ link[1] }}</a><br>
+{% endif %}
+{% endfor%}
+</body>
+</html>

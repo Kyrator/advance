@@ -6,9 +6,15 @@
 список всех доступных страниц на сайте с возможностью перехода на них.
 """
 
-from flask import Flask
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
+
+
+def has_no_empty(rule):
+    defaults = rule.defaults if rule.defaults is not None else ()
+    arguments = rule.arguments if rule.arguments is not None else ()
+    return len(defaults) >= len(arguments)
 
 
 @app.route('/dogs')
@@ -29,6 +35,16 @@ def cat_page(cat_id: int):
 @app.route('/index')
 def index():
     return 'Главная страница'
+
+
+@app.errorhandler(404)
+def not_found(e):
+    links = []
+    for rule in app.url_map.iter_rules():
+        if "GET" in rule.methods and has_no_empty(rule):
+            url = url_for(rule.endpoint, **(rule.defaults or {}))
+            links.append((url, rule.endpoint.capitalize()))
+    return render_template('page404.html', links=links)
 
 
 if __name__ == '__main__':
