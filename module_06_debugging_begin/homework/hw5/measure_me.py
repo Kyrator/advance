@@ -22,7 +22,7 @@ def get_data_line(sz: int) -> List[int]:
 
 
 def measure_me(nums: List[int]) -> List[List[int]]:
-    logger.debug("Enter measure_me")
+    logger.info("Enter measure_me")
     results = []
     nums.sort()
 
@@ -54,13 +54,20 @@ def measure_me(nums: List[int]) -> List[List[int]]:
 
                     right -= 1
 
-    logger.debug("Leave measure_me")
+    logger.info("Leave measure_me")
 
     return results
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level="DEBUG")
+    logging.basicConfig(
+        level="INFO",
+        filename='measure_me.log',
+        filemode="w",
+        encoding="utf-8",
+        format='%(asctime)s %(msecs)03d: "%(message)s"',
+        datefmt='%I:%M:%S',
+    )
     for it in range(15):
         data_line = get_data_line(10 ** 3)
         measure_me(data_line)
