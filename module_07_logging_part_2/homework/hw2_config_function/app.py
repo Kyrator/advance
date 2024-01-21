@@ -6,9 +6,10 @@ from utils import string_to_operator
 logger = logging.getLogger('app')
 logger.setLevel(logging.INFO)
 
-handler = logging.StreamHandler(sys.stderr)
+handler = logging.StreamHandler(sys.stdout)
 handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - name=%(name)s - %(levelname)s - %(message)s')
+# уровень | логгер | время | номер строки | сообщение
+formatter = logging.Formatter('%уровень-(levelname)s логгер-%(name)s время-%(asctime)s номер_строки=%(lineno)d сообщение-%(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 

@@ -13,6 +13,7 @@ submodule_logger.propagate = True
 
 custom_handler = logging.StreamHandler()
 module_logger.addHandler(custom_handler)
+
 formatter = logging.Formatter(fmt="%(levelname)s | %(name)s | %(message)s")
 custom_handler.setFormatter(formatter)
 
