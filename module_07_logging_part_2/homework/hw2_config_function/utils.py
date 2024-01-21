@@ -8,8 +8,9 @@ logger = logging.getLogger('utils')
 logger.setLevel(logging.INFO)
 
 handler = logging.StreamHandler(sys.stdout)
-handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%уровень-(levelname)s логгер-%(name)s время-%(asctime)s номер_строки=%(lineno)d сообщение-%(message)s')
+handler.setLevel(logging.INFO)
+formatter = logging.Formatter('уровень-%(levelname)s логгер-%(name)s время-%(asctime)s номер_строки=%(lineno)d '
+                              'сообщение-%(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
