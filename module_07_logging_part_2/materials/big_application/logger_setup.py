@@ -18,8 +18,8 @@ dict_config = {
         },
         "file": {
             "class": "logging.handlers.TimedRotatingFileHandler",
-            "when": "midnight",
-            "backupCount": 5,
+            "when": "S",
+            "backupCount": 10,
             "formatter": "simple",
             "level": "ERROR",
             "filename": "skillbox.log"
