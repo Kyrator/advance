@@ -1,0 +1,24 @@
+<--""
+   Level WARNING
+   |
+   o<--"app"
+   |   Level DEBUG
+   |   Handler <LevelFileHandler (DEBUG)>
+   |     Level DEBUG
+   |     Filter <dict.LevelFilter object at 0x7fd16b0d4e20>
+   |     Formatter fmt='%(levelname)s | %(name)s | %(message)s' datefmt=None
+   |   Handler <LevelFileHandler (ERROR)>
+   |     Level ERROR
+   |     Filter <dict.LevelFilter object at 0x7fd16b0d4d60>
+   |     Formatter fmt='%(levelname)s | %(name)s | %(message)s' datefmt=None
+   |   Handler Stream <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+   |     Level DEBUG
+   |     Formatter fmt='%(levelname)s | %(name)s | %(message)s' datefmt=None
+   |
+   o<--"utils"
+       Level INFO
+       Handler TimedRotatingFile '/home/kyrator/PycharmProjects/python_advanced/module_07_logging_part_2/homework/hw6_logging_tree/utils.log' when='H' interval=36000 backupCount=1
+         Formatter fmt='%(levelname)s | %(name)s | %(message)s' datefmt=None
+       Handler Stream <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+         Level DEBUG
+         Formatter fmt='%(levelname)s | %(name)s | %(message)s' datefmt=None

@@ -1,0 +1,4 @@
+total 8
+-rw-rw-r-- 1 kyrator kyrator 1048 ноя 16 17:15 get_mean_size.py
+-rw-rw-r-- 1 kyrator kyrator    0 ноя 16 17:35 ls.txt
+-rw-rw-r-- 1 kyrator kyrator 2956 ноя 16 12:58 README.md
