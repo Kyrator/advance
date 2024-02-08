@@ -4,7 +4,7 @@ from typing import Union, Callable
 from operator import sub, mul, truediv, add
 from dict import get_logger
 
-logger = logging.getLogger('utils')
+logger = logging.getLogger('app')
 
 OPERATORS = {
     '+': add,
